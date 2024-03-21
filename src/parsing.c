@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albagar4 <albagar4@student.42.fr>          +#+  +:+       +#+        */
+/*   By: albagar4 <albagar4@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 13:27:07 by albagar4          #+#    #+#             */
-/*   Updated: 2024/03/20 18:20:43 by albagar4         ###   ########.fr       */
+/*   Updated: 2024/03/21 13:16:53 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ void	ft_parsing(char **argv, t_param *param)
 		param->end_of_loop = ft_atol(argv[5]);
 	else
 		param->end_of_loop = -2;
+	param->forks = (pthread_mutex_t *)malloc((sizeof(pthread_mutex_t)) * param->nbr_of_philo);
+	if (!param->forks)
+		return ;
 }
 
 int	check_correct_param(t_param param)

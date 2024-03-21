@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albagar4 <albagar4@student.42.fr>          +#+  +:+       +#+        */
+/*   By: albagar4 <albagar4@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 11:59:02 by albagar4          #+#    #+#             */
-/*   Updated: 2024/03/20 18:48:14 by albagar4         ###   ########.fr       */
+/*   Updated: 2024/03/21 13:28:55 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,13 @@
 
 typedef struct s_param
 {
-	long	nbr_of_philo;
-	long	time_to_die;
-	long	time_to_eat;
-	long	time_to_sleep;
-	int		death;
-	long	end_of_loop;
+	long			nbr_of_philo;
+	long			time_to_die;
+	long			time_to_eat;
+	long			time_to_sleep;
+	int				death;
+	long			end_of_loop;
+	pthread_mutex_t	*forks;
 }	t_param;
 
 typedef struct s_philo
@@ -42,3 +43,8 @@ long	ft_atol(const char *str);
 // Parsing
 void	ft_parsing(char **argv, t_param *param);
 int		check_correct_param(t_param param);
+// Main
+void	free_threads_and_mutex(t_philo *philos);
+void	ft_create_philo(t_param *data);
+void	set_philosophers(t_philo *philos, t_param *data);
+void	*imprimo();

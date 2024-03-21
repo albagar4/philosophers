@@ -1,6 +1,6 @@
 NAME = philo
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fsanitize=thread -g
 INCLUDES = -I . -I include
 
 PHILO_SRCS = src/main.c src/utils.c src/parsing.c

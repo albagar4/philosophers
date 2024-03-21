@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albagar4 <albagar4@student.42.fr>          +#+  +:+       +#+        */
+/*   By: albagar4 <albagar4@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 11:58:03 by albagar4          #+#    #+#             */
-/*   Updated: 2024/03/20 18:56:40 by albagar4         ###   ########.fr       */
+/*   Updated: 2024/03/21 13:30:34 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 void	*imprimo()
 {
+	pthread_mutex_lock(&fork);
 	printf("lolaso\n");
 	//usleep(30);
 	printf("serie o paralelo?\n");
+	pthread_mutex_unlock(&fork);
 	return (NULL);
 }
 
@@ -29,16 +31,16 @@ void	set_philosophers(t_philo *philos, t_param *data)
 	j = 0;
 	while (j < data->nbr_of_philo)
 	{
-		philos[i].name = i;
-		if (i == data->nbr_of_philo)
-			philos[i].left_fork = 1;
+		philos[j].name = i;
+		if (j == data->nbr_of_philo)
+			philos[j].left_fork = 1;
 		else
-			philos[i].left_fork = i + 1;
-		philos[i].right_fork = i;
-		philos[i].last_eat = 0;
-		philos[i].last_sleep = 0;
-		philos[i].last_think = 0;
-		philos[i].data = data;
+			philos[j].left_fork = i + 1;
+		philos[j].right_fork = i;
+		philos[j].last_eat = 0;
+		philos[j].last_sleep = 0;
+		philos[j].last_think = 0;
+		philos[j].data = data;
 		i++;
 		j++;
 	}
@@ -56,8 +58,24 @@ void	ft_create_philo(t_param *data)
 	set_philosophers(philos, data);
 	while (i < data->nbr_of_philo)
 	{
+		pthread_mutex_init(&data->forks[i], NULL);
 		if (pthread_create(&philos[i].thread, NULL, &imprimo, NULL) != 0)
 			return ;
+		i++;
+	}
+	free_threads_and_mutex(philos);
+}
+
+void	free_threads_and_mutex(t_philo *philos)
+{
+	int	i;
+
+	i = 0;
+	while (i < philos->data->nbr_of_philo)
+	{
+		if (pthread_join(philos[i].thread, NULL) != 0)
+			return ;
+		pthread_mutex_destroy(&philos->data->forks[i]);
 		i++;
 	}
 }

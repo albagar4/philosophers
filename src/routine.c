@@ -6,7 +6,7 @@
 /*   By: albagar4 <albagar4@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:19:59 by albagar4          #+#    #+#             */
-/*   Updated: 2024/03/22 14:58:51 by albagar4         ###   ########.fr       */
+/*   Updated: 2024/03/22 16:55:20 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,17 @@ void	*ft_think(t_philo *philos, t_param *table)
 {
 	static int	count = 0;
 
-	printf("%f %d is thinking\n", 1.0, philos->name);
+	printf("caca\n");
+	// (void)table;
+	// (void)philos;
+	pthread_mutex_lock(&table->mutex);
+	usleep(10000);
+	printf("%i %d is thinking\n", 1, philos->name);
+	pthread_mutex_unlock(&table->mutex);
+	printf("caca2\n");
 	if (count == 3)
 		exit(0);
 	count++;
-	ft_eat(philos, table);
+	// ft_eat(philos, table);
 	return (NULL);
 }

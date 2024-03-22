@@ -6,19 +6,19 @@
 /*   By: albagar4 <albagar4@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 11:58:03 by albagar4          #+#    #+#             */
-/*   Updated: 2024/03/21 13:30:34 by albagar4         ###   ########.fr       */
+/*   Updated: 2024/03/21 13:57:01 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-void	*imprimo()
+void	*imprimo(void * philos[i])
 {
-	pthread_mutex_lock(&fork);
+	pthread_mutex_lock(philos->data->fork);
 	printf("lolaso\n");
 	//usleep(30);
 	printf("serie o paralelo?\n");
-	pthread_mutex_unlock(&fork);
+	pthread_mutex_unlock(philos->data->fork);
 	return (NULL);
 }
 
@@ -59,7 +59,7 @@ void	ft_create_philo(t_param *data)
 	while (i < data->nbr_of_philo)
 	{
 		pthread_mutex_init(&data->forks[i], NULL);
-		if (pthread_create(&philos[i].thread, NULL, &imprimo, NULL) != 0)
+		if (pthread_create(&philos[i].thread, NULL, &imprimo, &philos[i]) != 0)
 			return ;
 		i++;
 	}

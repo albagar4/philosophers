@@ -3,7 +3,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror -fsanitize=thread -g
 INCLUDES = -I . -I include
 
-PHILO_SRCS = src/main.c src/utils.c src/parsing.c
+PHILO_SRCS = src/main.c src/utils.c src/parsing.c src/preset.c
 PHILO_OBJS = $(PHILO_SRCS:.c=.o)
 
 all: $(NAME)

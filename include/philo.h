@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albagar4 <albagar4@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: albagar4 <albagar4@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 11:59:02 by albagar4          #+#    #+#             */
-/*   Updated: 2024/03/21 13:28:55 by albagar4         ###   ########.fr       */
+/*   Updated: 2024/03/22 13:23:17 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,13 @@
 #include <pthread.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdbool.h>
 
-typedef struct s_param
+typedef struct s_forks
 {
-	long			nbr_of_philo;
-	long			time_to_die;
-	long			time_to_eat;
-	long			time_to_sleep;
-	int				death;
-	long			end_of_loop;
-	pthread_mutex_t	*forks;
-}	t_param;
+	int				nbr;
+	pthread_mutex_t	mutex;
+}	t_forks;
 
 typedef struct s_philo
 {
@@ -32,19 +28,30 @@ typedef struct s_philo
 	int			left_fork;
 	int			right_fork;
 	long		last_eat;
-	long		last_sleep;
-	long		last_think;
-	t_param		*data;
+	bool		dead;
 	pthread_t	thread;
 }	t_philo;
+
+typedef struct s_param
+{
+	long		nbr_of_philo;
+	long		time_to_die;
+	long		time_to_eat;
+	long		time_to_sleep;
+	long		end_of_loop;
+	t_philo		*philos;
+	pthread_t	*monitors;
+	t_forks		*forks;
+}	t_param;
 
 // Utils
 long	ft_atol(const char *str);
 // Parsing
 void	ft_parsing(char **argv, t_param *param);
 int		check_correct_param(t_param param);
+// Preset
+void	*set_forks(t_param *table);
+void	*set_philos(t_param *table);
 // Main
-void	free_threads_and_mutex(t_philo *philos);
-void	ft_create_philo(t_param *data);
-void	set_philosophers(t_philo *philos, t_param *data);
+void	ft_create_threads(t_param *table);
 void	*imprimo();

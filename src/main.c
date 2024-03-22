@@ -6,7 +6,7 @@
 /*   By: albagar4 <albagar4@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 11:58:03 by albagar4          #+#    #+#             */
-/*   Updated: 2024/03/22 17:08:26 by albagar4         ###   ########.fr       */
+/*   Updated: 2024/03/22 17:13:33 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,12 @@ void	*ft_routine(void *data)
 	table = (t_param *)data;
 	printf("holi\n");
 	printf("paso de aqui??\n");
-	ft_think(table->philos, table);
+	while (1)
+	{
+		ft_think(table->philos, table);
+		ft_eat(table->philos, table);
+		ft_sleep(table->philos, table);
+	}
 	return (NULL);
 }
 

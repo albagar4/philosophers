@@ -6,7 +6,7 @@
 /*   By: albagar4 <albagar4@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:19:59 by albagar4          #+#    #+#             */
-/*   Updated: 2024/03/22 17:09:37 by albagar4         ###   ########.fr       */
+/*   Updated: 2024/03/22 17:12:57 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	*ft_eat(t_philo *philos, t_param *table)
 	usleep(table->time_to_eat);
 	pthread_mutex_unlock(&table->forks[lfork].mutex);
 	pthread_mutex_unlock(&table->forks[rfork].mutex);
-	ft_sleep(philos, table);
 	return (NULL);
 }
 
@@ -34,7 +33,6 @@ void	*ft_sleep(t_philo *philos, t_param *table)
 {
 	printf("%f %d is sleeping\n", 1.3, philos->name);
 	usleep(table->time_to_sleep);
-	ft_think(philos, table);
 	return (NULL);
 }
 
@@ -51,6 +49,5 @@ void	*ft_think(t_philo *philos, t_param *table)
 	if (count == 3)
 		exit(0);
 	count++;
-	ft_eat(philos, table);
 	return (NULL);
 }

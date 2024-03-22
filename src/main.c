@@ -6,16 +6,19 @@
 /*   By: albagar4 <albagar4@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 11:58:03 by albagar4          #+#    #+#             */
-/*   Updated: 2024/03/22 13:26:08 by albagar4         ###   ########.fr       */
+/*   Updated: 2024/03/22 14:58:13 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-void	*imprimo()
+void	*ft_routine(void *data)
 {
-	printf("lolaso\n");
-	printf("serie o paralelo?\n");
+	t_param	*table;
+
+	table = (t_param *)data;
+	printf("holi\n");
+	ft_think(table->philos, table);
 	return (NULL);
 }
 
@@ -29,10 +32,11 @@ void	ft_create_threads(t_param *table)
 	while (i < table->nbr_of_philo)
 	{
 		if (pthread_create(&table->philos[i].thread,
-				NULL, &imprimo, &table->philos[i]) != 0)
+				NULL, &ft_routine, &table) != 0)
 			return ;
 		i++;
 	}
+	return ;
 }
 
 int	main(int argc, char *argv[])

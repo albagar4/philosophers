@@ -1,9 +1,10 @@
 NAME = philo
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -fsanitize=thread -g
+# -fsanitize=thread -g
+CFLAGS = -Wall -Wextra -Werror
 INCLUDES = -I . -I include
 
-PHILO_SRCS = src/main.c src/utils.c src/parsing.c src/preset.c
+PHILO_SRCS = src/main.c src/utils.c src/parsing.c src/preset.c src/routine.c
 PHILO_OBJS = $(PHILO_SRCS:.c=.o)
 
 all: $(NAME)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albagar4 <albagar4@student.42.fr>          +#+  +:+       +#+        */
+/*   By: albagar4 <albagar4@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:19:59 by albagar4          #+#    #+#             */
-/*   Updated: 2024/03/22 17:12:57 by albagar4         ###   ########.fr       */
+/*   Updated: 2024/03/22 23:07:34 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	*ft_think(t_philo *philos, t_param *table)
 
 	printf("hola\n");
 	pthread_mutex_lock(&table->mutex);
-	usleep(10000);
 	printf("%i %d is thinking\n", 1, philos->name);
 	pthread_mutex_unlock(&table->mutex);
 	printf("adios\n");

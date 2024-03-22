@@ -6,7 +6,7 @@
 /*   By: albagar4 <albagar4@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 11:58:03 by albagar4          #+#    #+#             */
-/*   Updated: 2024/03/22 16:52:35 by albagar4         ###   ########.fr       */
+/*   Updated: 2024/03/22 17:08:26 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,6 @@ void	ft_create_threads(t_param *table)
 	set_forks(table);
 	set_philos(table);
 	set_mutex(table);
-	// pthread_mutex_lock(table->mutex);
-	// for (int j = 0 ; j < table->nbr_of_philo ; j++)
-	// 	printf("%i\n", table->philos[j].name);
 	while (i < table->nbr_of_philo)
 	{
 		if (pthread_create(&table->philos[i].thread,

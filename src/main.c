@@ -6,7 +6,7 @@
 /*   By: albagar4 <albagar4@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 11:58:03 by albagar4          #+#    #+#             */
-/*   Updated: 2024/03/25 18:12:43 by albagar4         ###   ########.fr       */
+/*   Updated: 2024/03/25 18:24:11 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	*ft_routine(void *data)
 	t_philo	*philos;
 
 	philos = (t_philo *)data;
-	printf("su nombre es philo->%d\n", philos->name);
 	while (1)
 	{
 		ft_think(philos);
@@ -29,23 +28,23 @@ void	*ft_routine(void *data)
 
 void	ft_create_threads(t_param *table)
 {
-	int				i;
+	t_philo	*philos;
+	int		i;
 
 	i = 0;
-	// set_mutex(table);
 	set_forks(table);
-	set_philos(table);
+	philos = set_philos(table);
 	while (i < table->nbr_of_philo)
 	{
-		if (pthread_create(&table->philos[i].thread,
-				NULL, &ft_routine, (void *) &table->philos[i]) != 0)
+		if (pthread_create(&philos[i].thread,
+				NULL, &ft_routine, (void *) &philos[i]) != 0)
 			return ;
 		i++;
 	}
 	i = 0;
 	while (i < table->nbr_of_philo)
 	{
-		if (pthread_join(table->philos[i].thread, NULL) != 0)
+		if (pthread_join(philos[i].thread, NULL) != 0)
 			return ;
 		i++;
 	}

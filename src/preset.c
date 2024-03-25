@@ -6,7 +6,7 @@
 /*   By: albagar4 <albagar4@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 13:17:16 by albagar4          #+#    #+#             */
-/*   Updated: 2024/03/25 18:11:38 by albagar4         ###   ########.fr       */
+/*   Updated: 2024/03/25 18:25:49 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	*set_forks(t_param *table)
 	return (NULL);
 }
 
-void	*set_philos(t_param *table)
+t_philo	*set_philos(t_param *table)
 {
 	t_philo	*philos;
 	int		i;
@@ -59,8 +59,8 @@ void	*set_philos(t_param *table)
 		philos[i].right_fork = table->forks[i].nbr;
 		philos[i].last_eat = 0;
 		philos[i].dead = false;
+		philos[i].table = table;
 		i++;
 	}
-	table->philos = philos;
-	return (NULL);
+	return (philos);
 }

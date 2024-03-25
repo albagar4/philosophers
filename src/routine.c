@@ -6,7 +6,7 @@
 /*   By: albagar4 <albagar4@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:19:59 by albagar4          #+#    #+#             */
-/*   Updated: 2024/03/25 18:12:16 by albagar4         ###   ########.fr       */
+/*   Updated: 2024/03/25 18:37:45 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	*ft_eat(t_philo *philos, t_param *table)
 	rfork = philos->right_fork;
 	pthread_mutex_lock(&table->forks[lfork].mutex);
 	pthread_mutex_lock(&table->forks[rfork].mutex);
-	printf("%f %d has taken a fork\n", 1.1, philos->name);
-	printf("%f %d is eating\n", 1.2, philos->name);
+	printf("%d has taken a fork\n", philos->name);
+	printf("%d is eating\n", philos->name);
 	usleep(table->time_to_eat);
 	pthread_mutex_unlock(&table->forks[lfork].mutex);
 	pthread_mutex_unlock(&table->forks[rfork].mutex);
@@ -31,7 +31,7 @@ void	*ft_eat(t_philo *philos, t_param *table)
 
 void	*ft_sleep(t_philo *philos, t_param *table)
 {
-	printf("%f %d is sleeping\n", 1.3, philos->name);
+	printf("%d is sleeping\n", philos->name);
 	usleep(table->time_to_sleep);
 	return (NULL);
 }
@@ -42,12 +42,10 @@ void	*ft_think(t_philo *philos)
 	pthread_mutex_t	mutex;
 
 	set_mutex(&mutex);
-	printf("hola\n");
 	pthread_mutex_lock(&mutex);
-	printf("%i %d is thinking\n", 1, philos->name);
+	printf("%d is thinking\n", philos->name);
 	pthread_mutex_unlock(&mutex);
-	printf("adios\n");
-	if (count == 3)
+	if (count == 300)
 		exit(0);
 	count++;
 	return (NULL);

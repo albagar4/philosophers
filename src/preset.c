@@ -6,7 +6,7 @@
 /*   By: albagar4 <albagar4@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 13:17:16 by albagar4          #+#    #+#             */
-/*   Updated: 2024/03/25 18:25:49 by albagar4         ###   ########.fr       */
+/*   Updated: 2024/03/25 18:31:37 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,6 @@ t_philo	*set_philos(t_param *table)
 		philos[i].table = table;
 		i++;
 	}
+	table->philos = philos;
 	return (philos);
 }

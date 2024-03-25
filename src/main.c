@@ -6,7 +6,7 @@
 /*   By: albagar4 <albagar4@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 11:58:03 by albagar4          #+#    #+#             */
-/*   Updated: 2024/03/25 18:24:11 by albagar4         ###   ########.fr       */
+/*   Updated: 2024/03/25 18:32:55 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	*ft_routine(void *data)
 	while (1)
 	{
 		ft_think(philos);
-		// ft_eat(table->philos, table);
-		// ft_sleep(table->philos, table);
+		ft_eat(philos, philos->table);
+		ft_sleep(philos, philos->table);
 	}
 	return (NULL);
 }

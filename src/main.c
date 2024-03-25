@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albagar4 <albagar4@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: albagar4 <albagar4@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 11:58:03 by albagar4          #+#    #+#             */
-/*   Updated: 2024/03/22 23:03:18 by albagar4         ###   ########.fr       */
+/*   Updated: 2024/03/25 18:12:43 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,13 @@
 
 void	*ft_routine(void *data)
 {
-	t_param	*table;
+	t_philo	*philos;
 
-	table = (t_param *)data;
-	printf("holi\n");
-	printf("paso de aqui??\n");
+	philos = (t_philo *)data;
+	printf("su nombre es philo->%d\n", philos->name);
 	while (1)
 	{
-		ft_think(table->philos, table);
+		ft_think(philos);
 		// ft_eat(table->philos, table);
 		// ft_sleep(table->philos, table);
 	}
@@ -33,13 +32,13 @@ void	ft_create_threads(t_param *table)
 	int				i;
 
 	i = 0;
+	// set_mutex(table);
 	set_forks(table);
 	set_philos(table);
-	set_mutex(table);
 	while (i < table->nbr_of_philo)
 	{
 		if (pthread_create(&table->philos[i].thread,
-				NULL, &ft_routine, &table) != 0)
+				NULL, &ft_routine, (void *) &table->philos[i]) != 0)
 			return ;
 		i++;
 	}

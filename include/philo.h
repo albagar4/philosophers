@@ -6,7 +6,7 @@
 /*   By: albagar4 <albagar4@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 11:59:02 by albagar4          #+#    #+#             */
-/*   Updated: 2024/03/22 16:47:51 by albagar4         ###   ########.fr       */
+/*   Updated: 2024/03/25 18:11:28 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,13 @@ long	ft_atol(const char *str);
 void	ft_parsing(char **argv, t_param *param);
 int		check_correct_param(t_param param);
 // Preset
-void	*set_mutex(t_param *table);
+void	*set_mutex(pthread_mutex_t *locker);
 void	*set_forks(t_param *table);
 void	*set_philos(t_param *table);
 // Routine
 void	*ft_eat(t_philo *philos, t_param *table);
 void	*ft_sleep(t_philo *philos, t_param *table);
-void	*ft_think(t_philo *philos, t_param *table);
+void	*ft_think(t_philo *philos);
 // Main
 void	ft_create_threads(t_param *table);
 void	*ft_routine();

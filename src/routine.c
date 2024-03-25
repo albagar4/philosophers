@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albagar4 <albagar4@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: albagar4 <albagar4@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:19:59 by albagar4          #+#    #+#             */
-/*   Updated: 2024/03/22 23:07:34 by albagar4         ###   ########.fr       */
+/*   Updated: 2024/03/25 18:12:16 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,16 @@ void	*ft_sleep(t_philo *philos, t_param *table)
 	return (NULL);
 }
 
-void	*ft_think(t_philo *philos, t_param *table)
+void	*ft_think(t_philo *philos)
 {
-	static int	count = 0;
+	static int		count = 0;
+	pthread_mutex_t	mutex;
 
+	set_mutex(&mutex);
 	printf("hola\n");
-	pthread_mutex_lock(&table->mutex);
+	pthread_mutex_lock(&mutex);
 	printf("%i %d is thinking\n", 1, philos->name);
-	pthread_mutex_unlock(&table->mutex);
+	pthread_mutex_unlock(&mutex);
 	printf("adios\n");
 	if (count == 3)
 		exit(0);

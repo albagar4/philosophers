@@ -6,30 +6,33 @@
 /*   By: albagar4 <albagar4@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 16:21:59 by albagar4          #+#    #+#             */
-/*   Updated: 2024/03/26 16:45:04 by albagar4         ###   ########.fr       */
+/*   Updated: 2024/03/26 17:39:07 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-long	get_current_time(struct timeval ti, struct timeval tf)
+double	get_current_time(struct timeval ti, struct timeval tf)
 {
-	long	time;
+	double	time;
 
-	if (gettimeofday(&time, NULL) == -1)
+	if (gettimeofday(&ti, NULL) == -1)
 		write(2, "gettimeofday() error\n", 22);
 	time = ((tf.tv_sec - ti.tv_sec) * 1000 + (tf.tv_usec - ti.tv_usec) / 1000);
+	printf("time es %f\n", time);
 	return (time);
 }
 
-void	set_time(struct timeval *ti, struct timeval *tf, t_philo *philo)
+void	set_time(struct timeval ti, t_philo *philo)
 {
-	long	time;
+	double			time;
+	struct timeval	tf;
 
-	gettimeofday(&tf);
-	time = get_current_time(*ti, *tf);
-	gettimeofday(&ti);
+	gettimeofday(&tf, NULL);
+	time = get_current_time(ti, tf);
+	gettimeofday(&ti, NULL);
 	time = philo->time;
+	printf("philo->time es %f\n", philo->time);
 }
 
 int	check_time(long req, t_philo *philo)
@@ -37,7 +40,7 @@ int	check_time(long req, t_philo *philo)
 	if (philo->time > req)
 	{
 		philo->dead = true;
-		printf("%ld %i died\n", philo->time, philo->name);
+		printf("%f %i died\n", philo->time, philo->name);
 		return (-1);
 	}
 	return (0);

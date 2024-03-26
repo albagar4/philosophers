@@ -4,7 +4,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 INCLUDES = -I . -I include
 
-PHILO_SRCS = src/main.c src/utils.c src/parsing.c src/preset.c src/routine.c
+PHILO_SRCS = src/main.c src/utils.c src/parsing.c src/preset.c src/routine.c src/calc_time.c
 PHILO_OBJS = $(PHILO_SRCS:.c=.o)
 
 all: $(NAME)

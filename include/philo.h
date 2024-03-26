@@ -6,7 +6,7 @@
 /*   By: albagar4 <albagar4@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 11:59:02 by albagar4          #+#    #+#             */
-/*   Updated: 2024/03/25 18:28:27 by albagar4         ###   ########.fr       */
+/*   Updated: 2024/03/26 16:33:09 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_philo
 	int			left_fork;
 	int			right_fork;
 	long		last_eat;
+	long		time;
 	bool		dead;
 	t_param		*table;
 	pthread_t	thread;

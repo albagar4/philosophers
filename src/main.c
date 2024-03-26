@@ -6,7 +6,7 @@
 /*   By: albagar4 <albagar4@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 11:58:03 by albagar4          #+#    #+#             */
-/*   Updated: 2024/03/25 18:32:55 by albagar4         ###   ########.fr       */
+/*   Updated: 2024/03/26 16:47:23 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,19 @@
 
 void	*ft_routine(void *data)
 {
-	t_philo	*philos;
+	t_philo			*philos;
+	struct timeval	ti;
+	struct timeval	tf;
 
 	philos = (t_philo *)data;
+	gettimeofday(&ti);
 	while (1)
 	{
+		set_time(&ti, &tf, &philos);
 		ft_think(philos);
+		set_time(gettimeofday(&ti), &tf, &philos);
 		ft_eat(philos, philos->table);
+		set_time(&ti, &tf, &philos);
 		ft_sleep(philos, philos->table);
 	}
 	return (NULL);

@@ -6,7 +6,7 @@
 /*   By: albagar4 <albagar4@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 13:15:15 by albagar4          #+#    #+#             */
-/*   Updated: 2024/03/26 16:23:15 by albagar4         ###   ########.fr       */
+/*   Updated: 2024/03/27 18:12:18 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,18 @@ long	ft_atol(const char *str)
 		i++;
 	}
 	return (result);
+}
+
+void	print_action(t_philo *philos, struct timeval tmp, int nbr)
+{
+	ft_clock(tmp, philos->table);
+	if (nbr == 1)
+		printf("%ld %d is thinking\n", philos->table->time, philos->name);
+	else if (nbr == 2)
+		printf("%ld %d is sleeping\n", philos->table->time, philos->name);
+	else if (nbr == 3)
+	{
+		printf("%ld %d has taken a fork\n", philos->table->time, philos->name);
+		printf("%ld %d is eating\n", philos->table->time, philos->name);
+	}
 }

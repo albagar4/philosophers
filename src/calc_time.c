@@ -6,7 +6,7 @@
 /*   By: albagar4 <albagar4@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 16:21:59 by albagar4          #+#    #+#             */
-/*   Updated: 2024/03/27 16:21:44 by albagar4         ###   ########.fr       */
+/*   Updated: 2024/03/29 17:43:56 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,14 @@ long	get_current_time(struct timeval ti, struct timeval tf)
 	return (time);
 }
 
-struct timeval	calc_time(struct timeval ti, t_philo *philo)
+void	calc_time(struct timeval ti, t_philo *philo)
 {
 	long			time;
 	struct timeval	tf;
 
 	gettimeofday(&tf, NULL);
 	time = get_current_time(ti, tf);
-	gettimeofday(&ti, NULL);
 	philo->last_eat = time;
-	return (ti);
 }
 
 void	ft_clock(struct timeval ti, t_param *table)
@@ -44,9 +42,9 @@ void	ft_clock(struct timeval ti, t_param *table)
 
 int	check_time(long req, t_philo *philo)
 {
-	if (philo->last_eat > req && !philo->dead)
+	if (philo->last_eat > req && !philo->table->dead)
 	{
-		philo->dead = true;
+		philo->table->dead = true;
 		printf("%ld %i died\n", philo->table->time, philo->name);
 		return (-1);
 	}

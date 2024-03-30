@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albagar4 <albagar4@student.42.fr>          +#+  +:+       +#+        */
+/*   By: albagar4 <albagar4@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 11:59:02 by albagar4          #+#    #+#             */
-/*   Updated: 2024/03/29 18:45:50 by albagar4         ###   ########.fr       */
+/*   Updated: 2024/03/30 21:28:09 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ typedef struct s_forks
 	pthread_mutex_t	mutex;
 }	t_forks;
 
+typedef struct s_monitor
+{
+	
+}
+
 typedef struct s_param
 {
 	long			nbr_of_philo;
@@ -34,7 +39,7 @@ typedef struct s_param
 	bool			dead;
 	struct timeval	init_tmp;
 	struct s_philo	*philos;
-	pthread_t		monitor;
+	pthread_t		*monitor;
 	t_forks			*forks;
 	pthread_mutex_t	mutex;
 }	t_param;
@@ -66,6 +71,7 @@ void	ft_clock(struct timeval ti, t_param *table);
 int		check_time(long req, t_philo *philo);
 // Handlers
 void	*ft_routine(void *data);
+void	*start_monitor(t_param *data);
 void	*ft_checker(void *data);
 // Routine
 void	*ft_eat(t_philo *philos, t_param *table, struct timeval tmp);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albagar4 <albagar4@student.42.fr>          +#+  +:+       +#+        */
+/*   By: albagar4 <albagar4@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 13:27:07 by albagar4          #+#    #+#             */
-/*   Updated: 2024/03/29 18:47:59 by albagar4         ###   ########.fr       */
+/*   Updated: 2024/03/30 21:05:30 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ void	ft_parsing(char **argv, t_param *param)
 	param->time_to_die = ft_atol(argv[2]);
 	param->time_to_eat = ft_atol(argv[3]);
 	param->time_to_sleep = ft_atol(argv[4]);
-	// param->init_tmp.tv_sec = 0;
-	// param->init_tmp.tv_usec = 0;
 	param->dead = 0;
 	if (argv[5])
 		param->end_of_loop = ft_atol(argv[5]);

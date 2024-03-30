@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handlers.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albagar4 <albagar4@student.42.fr>          +#+  +:+       +#+        */
+/*   By: albagar4 <albagar4@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 16:02:20 by albagar4          #+#    #+#             */
-/*   Updated: 2024/03/29 18:42:56 by albagar4         ###   ########.fr       */
+/*   Updated: 2024/03/30 21:23:38 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,32 @@ void	*ft_routine(void *data)
 	return (NULL);
 }
 
+void	*start_monitor(t_param *data)
+{
+	pthread_t	*monitor;
+	int			i;
+
+	i = 0;
+	monitor = (pthread_t)malloc(sizeof(pthread_t) * data->nbr_of_philo);
+	if (!monitor)
+		return (NULL);
+	data->monitor = monitor;
+	while (i < data->nbr_of_philo)
+	{
+		if (pthread_create(&monitor[i], NULL, &ft_checker,
+				(void *) &data) != 0)
+			return (NULL);
+		i++;
+	}
+	i = 0;
+	while (i < data->nbr_of_philo)
+	{
+		pthread_detach(monitor[i]);
+		i++;
+	}
+	return (NULL);
+}
+
 void	*ft_checker(void *data)
 {
 	t_param	*table;
@@ -37,11 +63,8 @@ void	*ft_checker(void *data)
 
 	table = (t_param *)data;
 	philos = table->philos;
-	i = 0;
 	while (table->dead == 0)
 	{
-		if (i == table->nbr_of_philo)
-			i = 0;
 		ft_clock(table->init_tmp, table);
 		if (table->time - philos[i].last_eat > table->time_to_die)
 		{
@@ -49,7 +72,6 @@ void	*ft_checker(void *data)
 			printf("%ld %i died\n", table->time, philos[i].name);
 			break ;
 		}
-		i++;
 	}
 	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: albagar4 <albagar4@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 16:02:20 by albagar4          #+#    #+#             */
-/*   Updated: 2024/04/01 16:12:29 by albagar4         ###   ########.fr       */
+/*   Updated: 2024/04/01 16:56:38 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	*ft_routine(void *data)
 	philos->last_eat = get_timestamp();
 	start_monitor(philos);
 	if (philos->name % 2)
-		usleep(1);
-	while (philos->table->dead == 0)
+		usleep(1 * 1000);
+	while (philos->table->dead == 0 && philos->count != 0)
 	{
 		ft_think(philos);
 		ft_eat(philos, philos->table);

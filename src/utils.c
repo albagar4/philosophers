@@ -6,7 +6,7 @@
 /*   By: albagar4 <albagar4@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 13:15:15 by albagar4          #+#    #+#             */
-/*   Updated: 2024/03/29 18:29:48 by albagar4         ###   ########.fr       */
+/*   Updated: 2024/04/01 16:10:59 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,23 +39,22 @@ long	ft_atol(const char *str)
 	return (result);
 }
 
-int	print_action(t_philo *philos, struct timeval tmp, int nbr)
+int	print_action(t_philo *philos, int nbr)
 {
+	long	clock;
+
 	if (philos->table->dead == 0)
 	{
-		ft_clock(tmp, philos->table);
+		clock = get_simulation_time(philos->table);
 		if (nbr == 1)
-			printf("%ld %d is thinking\n", philos->table->time, philos->name);
+			printf("%ld %d is thinking\n", clock, philos->name);
 		else if (nbr == 2)
-			printf("%ld %d is sleeping\n", philos->table->time, philos->name);
+			printf("%ld %d is sleeping\n", clock, philos->name);
 		else if (nbr == 3)
 		{
-			printf("%ld %d has taken a fork\n", philos->table->time,
-				philos->name);
-			printf("%ld %d is eating\n", philos->table->time, philos->name);
+			printf("%ld %d has taken a fork\n", clock, philos->name);
+			printf("%ld %d is eating\n", clock, philos->name);
 		}
-		return (0);
 	}
-	else
-		return (-1);
+	return (0);
 }

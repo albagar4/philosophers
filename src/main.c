@@ -6,7 +6,7 @@
 /*   By: albagar4 <albagar4@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 11:58:03 by albagar4          #+#    #+#             */
-/*   Updated: 2024/03/29 18:49:38 by albagar4         ###   ########.fr       */
+/*   Updated: 2024/04/01 15:29:06 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,6 @@ void	ft_create_threads(t_param *table)
 			return ;
 		i++;
 	}
-	table->monitor = (pthread_t)malloc(sizeof(pthread_t));
-	if (!table->monitor)
-		return ;
-	if (pthread_create(&table->monitor, NULL, &ft_checker,
-			(void *) &table) != 0)
-		return ;
 	i = 0;
 	while (i < table->nbr_of_philo)
 	{

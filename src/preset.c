@@ -6,7 +6,7 @@
 /*   By: albagar4 <albagar4@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 13:17:16 by albagar4          #+#    #+#             */
-/*   Updated: 2024/03/29 18:34:53 by albagar4         ###   ########.fr       */
+/*   Updated: 2024/04/01 16:08:25 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	*set_forks(t_param *table)
 		return (NULL);
 	while (i < table->nbr_of_philo)
 	{
-		fork_list[i].nbr = i + 1;
+		fork_list[i].nbr = i;
 		pthread_mutex_init(&fork_list[i].mutex, NULL);
 		i++;
 	}

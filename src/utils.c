@@ -6,11 +6,16 @@
 /*   By: albagar4 <albagar4@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 13:15:15 by albagar4          #+#    #+#             */
-/*   Updated: 2024/04/01 17:05:25 by albagar4         ###   ########.fr       */
+/*   Updated: 2024/04/09 11:24:20 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
+
+void	ft_one_philo(t_param *table)
+{
+	
+}
 
 long	ft_atol(const char *str)
 {

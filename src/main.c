@@ -6,7 +6,7 @@
 /*   By: albagar4 <albagar4@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 11:58:03 by albagar4          #+#    #+#             */
-/*   Updated: 2024/04/01 15:29:06 by albagar4         ###   ########.fr       */
+/*   Updated: 2024/04/09 11:24:01 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ int	main(int argc, char *argv[])
 	ft_parsing(argv, &param);
 	if (check_correct_param(param) == -1)
 		return (printf("Invalid parameters\n"), 0);
-	ft_create_threads(&param);
+	if (param.nbr_of_philo == 1)
+		ft_one_philo(&param);
+	else
+		ft_create_threads(&param);
 	return (0);
 }

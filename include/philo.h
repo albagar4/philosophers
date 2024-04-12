@@ -6,7 +6,7 @@
 /*   By: albagar4 <albagar4@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 11:59:02 by albagar4          #+#    #+#             */
-/*   Updated: 2024/04/12 20:53:09 by albagar4         ###   ########.fr       */
+/*   Updated: 2024/04/12 20:58:24 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_param
 	t_forks			*forks;
 	pthread_mutex_t	write;
 	pthread_mutex_t	mutex;
+	pthread_mutex_t	mon_mutex;
 	pthread_mutex_t	mon_mutex;
 }	t_param;
 

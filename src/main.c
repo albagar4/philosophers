@@ -6,11 +6,18 @@
 /*   By: albagar4 <albagar4@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 11:58:03 by albagar4          #+#    #+#             */
-/*   Updated: 2024/04/09 11:24:01 by albagar4         ###   ########.fr       */
+/*   Updated: 2024/04/12 18:06:48 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
+
+void	ft_one_philo(t_param *table)
+{
+	printf("0 1 is thinking\n");
+	usleep(table->time_to_die);
+	printf("%ld 1 has died\n", table->time_to_die + 1);
+}
 
 void	ft_create_threads(t_param *table)
 {
@@ -19,6 +26,8 @@ void	ft_create_threads(t_param *table)
 
 	i = 0;
 	set_forks(table);
+	set_mutex(&table->mutex);
+	set_mutex(&table->write);
 	philos = set_philos(table);
 	while (i < table->nbr_of_philo)
 	{

@@ -6,7 +6,7 @@
 /*   By: albagar4 <albagar4@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 11:59:02 by albagar4          #+#    #+#             */
-/*   Updated: 2024/04/01 16:28:56 by albagar4         ###   ########.fr       */
+/*   Updated: 2024/04/12 17:42:46 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_param
 	long			start_time;
 	struct s_philo	*philos;
 	t_forks			*forks;
+	pthread_mutex_t	write;
 	pthread_mutex_t	mutex;
 }	t_param;
 
@@ -75,4 +76,5 @@ void	*ft_eat(t_philo *philos, t_param *table);
 void	*ft_sleep(t_philo *philos);
 void	*ft_think(t_philo *philos);
 // Main
+void	ft_one_philo(t_param *table);
 void	ft_create_threads(t_param *table);

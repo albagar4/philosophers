@@ -6,7 +6,7 @@
 /*   By: albagar4 <albagar4@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 11:58:03 by albagar4          #+#    #+#             */
-/*   Updated: 2024/04/12 18:06:48 by albagar4         ###   ########.fr       */
+/*   Updated: 2024/04/12 20:14:10 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,19 @@ void	ft_one_philo(t_param *table)
 	printf("%ld 1 has died\n", table->time_to_die + 1);
 }
 
+void	ft_destroy_forks(t_param *table)
+{
+	int	count;
+
+	count = 0;
+	while (count < table->nbr_of_philo)
+	{
+		pthread_mutex_destroy(&table->forks[count].mutex);
+		count++;
+	}
+	free(&table->forks);
+}
+
 void	ft_create_threads(t_param *table)
 {
 	t_philo		*philos;
@@ -26,8 +39,9 @@ void	ft_create_threads(t_param *table)
 
 	i = 0;
 	set_forks(table);
-	set_mutex(&table->mutex);
-	set_mutex(&table->write);
+	// table->mutex = set_mutex();
+	// table->write = set_mutex();
+	// table->mon_mutex = set_mutex();
 	philos = set_philos(table);
 	while (i < table->nbr_of_philo)
 	{
@@ -43,6 +57,10 @@ void	ft_create_threads(t_param *table)
 			return ;
 		i++;
 	}
+	pthread_mutex_destroy(&table->mutex);
+	pthread_mutex_destroy(&table->write);
+	pthread_mutex_destroy(&table->mon_mutex);
+	ft_destroy_forks(table);
 }
 
 int	main(int argc, char *argv[])

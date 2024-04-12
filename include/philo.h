@@ -6,7 +6,7 @@
 /*   By: albagar4 <albagar4@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 11:59:02 by albagar4          #+#    #+#             */
-/*   Updated: 2024/04/12 17:42:46 by albagar4         ###   ########.fr       */
+/*   Updated: 2024/04/12 20:06:18 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_param
 	t_forks			*forks;
 	pthread_mutex_t	write;
 	pthread_mutex_t	mutex;
+	pthread_mutex_t	mon_mutex;
 }	t_param;
 
 typedef struct s_philo
@@ -52,12 +53,13 @@ typedef struct s_philo
 
 // Utils
 long	ft_atol(const char *str);
+void	ft_usleep(t_philo *philos, long time);
 int		print_action(t_philo *philos, int nbr);
 // Parsing
 void	ft_parsing(char **argv, t_param *param);
 int		check_correct_param(t_param param);
 // Preset
-void	*set_mutex(pthread_mutex_t *locker);
+pthread_mutex_t	set_mutex(void);
 void	*set_forks(t_param *table);
 t_philo	*set_philos(t_param *table);
 // Time check
@@ -76,5 +78,6 @@ void	*ft_eat(t_philo *philos, t_param *table);
 void	*ft_sleep(t_philo *philos);
 void	*ft_think(t_philo *philos);
 // Main
+void	ft_destroy_forks(t_param *table);
 void	ft_one_philo(t_param *table);
 void	ft_create_threads(t_param *table);

@@ -1,40 +1,25 @@
 /* ************************************************************************** */
-/*																			*/
-/*														:::	  ::::::::   */
-/*   preset.c										   :+:	  :+:	:+:   */
-/*													+:+ +:+		 +:+	 */
-/*   By: albagar4 <albagar4@student.42.fr>		  +#+  +:+	   +#+		*/
-/*												+#+#+#+#+#+   +#+		   */
-/*   Created: 2024/03/22 13:17:16 by albagar4		  #+#	#+#			 */
-/*   Updated: 2024/04/12 19:57:29 by albagar4		 ###   ########.fr	   */
-/*																			*/
-/* ************************************************************************** */
-
-#include "../include/philo.h"
-
-/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   preset.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: albagar4 <albagar4@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/22 13:17:16 by albagar4          #+#    #+#             */
-/*   Updated: 2024/04/01 16:30:13 by albagar4         ###   ########.fr       */
+/*   Created: 2024/04/12 21:11:19 by albagar4          #+#    #+#             */
+/*   Updated: 2024/04/12 21:14:01 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-// pthread_mutex_t	set_mutex(void)
-// {
-// 	pthread_mutex_t	*locker;
-
-// 	locker = malloc(sizeof(pthread_mutex_t));
-// 	if (pthread_mutex_init(locker, NULL) != 0)
-// 		printf("fail\n");
-// 	return (*locker);
-// }
+void	*set_mutex(pthread_mutex_t *locker)
+{
+	locker = malloc(sizeof(pthread_mutex_t) * 1);
+	if (!locker)
+		return (NULL);
+	pthread_mutex_init(locker, NULL);
+	return (NULL);
+}
 
 void	*set_forks(t_param *table)
 {
@@ -51,9 +36,6 @@ void	*set_forks(t_param *table)
 		pthread_mutex_init(&fork_list[i].mutex, NULL);
 		i++;
 	}
-	pthread_mutex_init(&table->mutex, NULL);
-	pthread_mutex_init(&table->write, NULL);
-	pthread_mutex_init(&table->mon_mutex, NULL);
 	table->forks = fork_list;
 	return (NULL);
 }

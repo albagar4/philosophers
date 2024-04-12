@@ -6,7 +6,7 @@
 /*   By: albagar4 <albagar4@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 11:59:02 by albagar4          #+#    #+#             */
-/*   Updated: 2024/04/12 21:05:36 by albagar4         ###   ########.fr       */
+/*   Updated: 2024/04/12 21:14:12 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 typedef struct s_forks
 {
 	int				nbr;
-	pthread_mutex_t	*mutex;
+	pthread_mutex_t	mutex;
 }	t_forks;
 
 typedef struct s_param
@@ -35,7 +35,7 @@ typedef struct s_param
 	struct s_philo	*philos;
 	t_forks			*forks;
 	pthread_mutex_t	mutex;
-	pthread_mutex_t	mon_mutex;
+	pthread_mutex_t	write;
 	pthread_mutex_t	mon_mutex;
 }	t_param;
 
@@ -59,7 +59,7 @@ int		print_action(t_philo *philos, int nbr);
 void	ft_parsing(char **argv, t_param *param);
 int		check_correct_param(t_param param);
 // Preset
-pthread_mutex_t	set_mutex(void);
+void	*set_mutex(pthread_mutex_t *locker);
 void	*set_forks(t_param *table);
 t_philo	*set_philos(t_param *table);
 // Time check

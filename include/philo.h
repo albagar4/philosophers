@@ -6,7 +6,7 @@
 /*   By: albagar4 <albagar4@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 11:59:02 by albagar4          #+#    #+#             */
-/*   Updated: 2024/04/12 21:14:12 by albagar4         ###   ########.fr       */
+/*   Updated: 2024/04/13 14:08:46 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct s_philo
 
 // Utils
 long	ft_atol(const char *str);
+bool	read_bool(t_param *table);
 void	ft_usleep(t_philo *philos, long time);
 int		print_action(t_philo *philos, int nbr);
 // Parsing

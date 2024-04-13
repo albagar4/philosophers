@@ -6,7 +6,7 @@
 /*   By: albagar4 <albagar4@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 16:21:59 by albagar4          #+#    #+#             */
-/*   Updated: 2024/04/01 16:10:11 by albagar4         ###   ########.fr       */
+/*   Updated: 2024/04/13 14:12:33 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,7 @@ long	get_timestamp(void)
 
 long	get_simulation_time(t_param *table)
 {
+	// pthread_mutex_lock(&table->mutex);
 	return (get_timestamp() - table->start_time);
+	// pthread_mutex_unlock(&table->mutex);
 }

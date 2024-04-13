@@ -6,7 +6,7 @@
 /*   By: albagar4 <albagar4@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:19:59 by albagar4          #+#    #+#             */
-/*   Updated: 2024/04/13 13:26:39 by albagar4         ###   ########.fr       */
+/*   Updated: 2024/04/13 13:42:17 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ void	*ft_eat(t_philo *philos, t_param *table)
 	rfork = philos->right_fork;
 	pthread_mutex_lock(&table->forks[lfork].mutex);
 	pthread_mutex_lock(&table->forks[rfork].mutex);
+	pthread_mutex_lock(&table->mon_mutex);
 	philos->last_eat = get_timestamp();
+	pthread_mutex_unlock(&table->mon_mutex);
 	pthread_mutex_lock(&table->write);
 	print_action(philos, 3);
 	pthread_mutex_unlock(&table->write);

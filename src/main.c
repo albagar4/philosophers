@@ -6,7 +6,7 @@
 /*   By: albagar4 <albagar4@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 11:58:03 by albagar4          #+#    #+#             */
-/*   Updated: 2024/04/13 13:09:46 by albagar4         ###   ########.fr       */
+/*   Updated: 2024/04/13 14:19:43 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	ft_create_threads(t_param *table)
 	i = 0;
 	set_forks(table);
 	philos = set_philos(table);
+	table->start_time = get_timestamp();
 	while (i < table->nbr_of_philo)
 	{
 		if (pthread_create(&philos[i].thread,

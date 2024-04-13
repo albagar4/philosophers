@@ -6,20 +6,11 @@
 /*   By: albagar4 <albagar4@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 21:11:19 by albagar4          #+#    #+#             */
-/*   Updated: 2024/04/13 13:10:52 by albagar4         ###   ########.fr       */
+/*   Updated: 2024/04/13 14:14:58 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
-
-// void	*set_mutex(pthread_mutex_t *locker)
-// {
-// 	locker = malloc(sizeof(pthread_mutex_t) * 1);
-// 	if (!locker)
-// 		return (NULL);
-// 	pthread_mutex_init(locker, NULL);
-// 	return (NULL);
-// }
 
 void	*set_forks(t_param *table)
 {

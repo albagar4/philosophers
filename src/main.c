@@ -6,7 +6,7 @@
 /*   By: albagar4 <albagar4@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 11:58:03 by albagar4          #+#    #+#             */
-/*   Updated: 2024/04/13 14:19:43 by albagar4         ###   ########.fr       */
+/*   Updated: 2024/04/13 14:38:13 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_destroy_forks(t_param *table)
 		pthread_mutex_destroy(&table->forks[count].mutex);
 		count++;
 	}
-	free(&table->forks);
+	free(table->forks);
 }
 
 void	ft_create_threads(t_param *table)
@@ -59,6 +59,7 @@ void	ft_create_threads(t_param *table)
 	pthread_mutex_destroy(&table->write);
 	pthread_mutex_destroy(&table->mon_mutex);
 	ft_destroy_forks(table);
+	free(philos);
 }
 
 int	main(int argc, char *argv[])

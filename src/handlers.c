@@ -6,7 +6,7 @@
 /*   By: albagar4 <albagar4@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 16:02:20 by albagar4          #+#    #+#             */
-/*   Updated: 2024/04/13 15:04:54 by albagar4         ###   ########.fr       */
+/*   Updated: 2024/04/13 15:24:36 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	*ft_checker(void *philo)
 			pthread_mutex_unlock(&philos->table->mon_mutex);
 			break ;
 		}
-		else if ((clock - 5) - philos->last_eat > philos->table->time_to_die)
+		else if ((clock - 9) - philos->last_eat > philos->table->time_to_die)
 		{
 			philos->table->dead = 1;
 			printf("%ld %i died\n", get_simulation_time(philos->table),

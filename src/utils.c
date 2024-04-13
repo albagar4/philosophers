@@ -6,7 +6,7 @@
 /*   By: albagar4 <albagar4@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 13:15:15 by albagar4          #+#    #+#             */
-/*   Updated: 2024/04/13 14:49:22 by albagar4         ###   ########.fr       */
+/*   Updated: 2024/04/13 15:13:53 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ int	print_action(t_philo *philos, int nbr)
 {
 	long	clock;
 
-	// pthread_mutex_lock(&philos->table->write);
 	if (read_bool(philos->table) == 0)
 	{
 		clock = get_simulation_time(philos->table);
@@ -73,6 +72,5 @@ int	print_action(t_philo *philos, int nbr)
 			printf("%ld %d is eating\n", clock, philos->name);
 		}
 	}
-	// pthread_mutex_unlock(&philos->table->write);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: albagar4 <albagar4@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 16:02:20 by albagar4          #+#    #+#             */
-/*   Updated: 2024/04/13 14:21:30 by albagar4         ###   ########.fr       */
+/*   Updated: 2024/04/13 14:28:00 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@ void	*ft_routine(void *data)
 	t_philo			*philos;
 
 	philos = (t_philo *)data;
+	pthread_mutex_lock(&philos->table->mon_mutex);
+	philos->last_eat = get_timestamp();
+	pthread_mutex_unlock(&philos->table->mon_mutex);
 	start_monitor(philos);
 	// if (philos->name == philos->table->nbr_of_philo)
 	// {
@@ -24,9 +27,6 @@ void	*ft_routine(void *data)
 	// 	philos->table->start_time = get_timestamp();
 	// 	pthread_mutex_unlock(&philos->table->mutex);
 	// }
-	pthread_mutex_lock(&philos->table->mon_mutex);
-	philos->last_eat = get_timestamp();
-	pthread_mutex_unlock(&philos->table->mon_mutex);
 	if (philos->name % 2)
 		ft_usleep(philos, 1);
 	while (read_bool(philos->table) == 0 && philos->count != 0)
@@ -64,11 +64,11 @@ void	*ft_checker(void *philo)
 	// pthread_mutex_lock(&philos->table->mutex);
 	// philos->table->start_time = get_timestamp();
 	// pthread_mutex_unlock(&philos->table->mutex);
-	while (table->dead == 0)
+	while (read_bool(table) == 0)
 	{
 		clock = get_timestamp();
 		pthread_mutex_lock(&table->mon_mutex);
-		if ((clock - 10000) - philos->last_eat > table->time_to_die)
+		if ((clock - 5) - philos->last_eat > table->time_to_die)
 		{
 			table->dead = 1;
 			printf("%ld %i died\n", get_simulation_time(philos->table),

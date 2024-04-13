@@ -6,7 +6,7 @@
 /*   By: albagar4 <albagar4@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 16:02:20 by albagar4          #+#    #+#             */
-/*   Updated: 2024/04/12 21:06:26 by albagar4         ###   ########.fr       */
+/*   Updated: 2024/04/13 13:35:11 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ void	*ft_routine(void *data)
 	t_philo			*philos;
 
 	philos = (t_philo *)data;
+	// if (philos->name == philos->table->nbr_of_philo)
+	pthread_mutex_lock(&philos->table->mutex);
 	philos->table->start_time = get_timestamp();
+	pthread_mutex_unlock(&philos->table->mutex);
 	philos->last_eat = get_timestamp();
 	start_monitor(philos);
 	if (philos->name % 2)
@@ -57,7 +60,7 @@ void	*ft_checker(void *philo)
 	while (table->dead == 0)
 	{
 		clock = get_timestamp();
-		if (clock - philos->last_eat > table->time_to_die)
+		if ((clock - 5) - philos->last_eat > table->time_to_die)
 		{
 			pthread_mutex_lock(&table->mon_mutex);
 			table->dead = 1;

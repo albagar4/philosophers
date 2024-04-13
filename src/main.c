@@ -6,7 +6,7 @@
 /*   By: albagar4 <albagar4@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 11:58:03 by albagar4          #+#    #+#             */
-/*   Updated: 2024/04/12 21:14:54 by albagar4         ###   ########.fr       */
+/*   Updated: 2024/04/13 13:09:46 by albagar4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ void	ft_create_threads(t_param *table)
 
 	i = 0;
 	set_forks(table);
-	set_mutex(&table->mutex);
-	set_mutex(&table->write);
 	philos = set_philos(table);
 	while (i < table->nbr_of_philo)
 	{
